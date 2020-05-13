@@ -1,6 +1,8 @@
+//action types
 const INIT_COMMENTS = "INIT_COMMENTS";
 const ADD_COMMENTS = "ADD_COMMENTS";
 const DELETE_COMMENTS = "DELETE_COMMENTS";
+//reducer
 export default function (state, action) {
   if (!state) {
     state = { comments: [] };
@@ -26,3 +28,21 @@ export default function (state, action) {
       return state;
   }
 }
+//action creators
+export const initComments = (comments) => {
+  return { type: INIT_COMMENTS, comments };
+};
+
+export const addComments = (comment) => {
+  return {
+    type: ADD_COMMENTS,
+    comment,
+  };
+};
+
+export const deleteComments = (commentIndex) => {
+  return {
+    type: DELETE_COMMENTS,
+    commentIndex,
+  };
+};
