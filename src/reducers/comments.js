@@ -33,14 +33,14 @@ export const initComments = (comments) => {
   return { type: INIT_COMMENTS, comments };
 };
 
-export const addComments = (comment) => {
+export const addComment = (comment) => {
   return {
     type: ADD_COMMENTS,
     comment,
   };
 };
 
-export const deleteComments = (commentIndex) => {
+export const deleteComment = (commentIndex) => {
   return {
     type: DELETE_COMMENTS,
     commentIndex,
