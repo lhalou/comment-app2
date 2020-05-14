@@ -1,43 +1,47 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-//从props获取数据
-class CommentInput extends Component {
+
+export default class CommentInput extends Component {
   static propTypes = {
     username: PropTypes.any,
     onSubmit: PropTypes.func,
     onUserNameInputBlur: PropTypes.func,
   };
+
   static defaultProps = {
     username: "",
   };
+
   constructor(props) {
     super(props);
     this.state = {
-      username: props.username, //从props上获取username字段
+      username: props.username, // 从 props 上取 username 字段
       content: "",
     };
   }
+
   componentDidMount() {
     this.textarea.focus();
   }
-  //用户名的输入框 blur的时候需要保存 username 到 LocalStorage 的行为
-  //也通过 props.onUserNameInputBlur 传递到上层去做。
-  handleUsernameBlur(e) {
+
+  handleUsernameBlur(event) {
     if (this.props.onUserNameInputBlur) {
-      //e.target.value 为输入的信息
-      this.props.onUserNameInputBlur(e.target.value);
+      this.props.onUserNameInputBlur(event.target.value);
     }
   }
-  handleUsernameChange(e) {
+
+  handleUsernameChange(event) {
     this.setState({
-      username: e.target.value,
+      username: event.target.value,
     });
   }
-  handleContentChange(e) {
+
+  handleContentChange(event) {
     this.setState({
-      content: e.target.value,
+      content: event.target.value,
     });
   }
+
   handleSubmit() {
     if (this.props.onSubmit) {
       this.props.onSubmit({
@@ -79,4 +83,3 @@ class CommentInput extends Component {
     );
   }
 }
-export default CommentInput;

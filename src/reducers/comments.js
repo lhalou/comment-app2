@@ -1,22 +1,24 @@
-//action types
+// action types
 const INIT_COMMENTS = "INIT_COMMENTS";
-const ADD_COMMENTS = "ADD_COMMENTS";
-const DELETE_COMMENTS = "DELETE_COMMENTS";
-//reducer
+const ADD_COMMENT = "ADD_COMMENT";
+const DELETE_COMMENT = "DELETE_COMMENT";
+
+// reducer
 export default function (state, action) {
   if (!state) {
     state = { comments: [] };
   }
   switch (action.type) {
-    //初始化评论
     case INIT_COMMENTS:
+      // 初始化评论
       return { comments: action.comments };
-    //新增评论
-    case ADD_COMMENTS:
+    case ADD_COMMENT:
+      // 新增评论
       return {
-        coments: [...state.comments, action.comment],
+        comments: [...state.comments, action.comment],
       };
-    case DELETE_COMMENTS:
+    case DELETE_COMMENT:
+      // 删除评论
       return {
         comments: [
           ...state.comments.slice(0, action.commentIndex),
@@ -24,25 +26,19 @@ export default function (state, action) {
         ],
       };
     default:
-      //返回的数据状态state
       return state;
   }
 }
-//action creators
+
+// action creators
 export const initComments = (comments) => {
   return { type: INIT_COMMENTS, comments };
 };
 
 export const addComment = (comment) => {
-  return {
-    type: ADD_COMMENTS,
-    comment,
-  };
+  return { type: ADD_COMMENT, comment };
 };
 
 export const deleteComment = (commentIndex) => {
-  return {
-    type: DELETE_COMMENTS,
-    commentIndex,
-  };
+  return { type: DELETE_COMMENT, commentIndex };
 };
